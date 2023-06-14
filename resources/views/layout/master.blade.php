@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Posts &mdash; Stisla</title>
+    <title>Manajemen Tugas</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap/css/bootstrap.min.css') }}">
@@ -29,6 +29,8 @@
         gtag('config', 'UA-94034622-3');
     </script>
     <!-- /END GA -->
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 
 <body>
@@ -70,15 +72,15 @@
             <div class="main-sidebar sidebar-style-2">
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
-                        <a href="index.html">Manage Tugas</a>
+                        <a href="{{ route('tasks.index') }}">Manajemen Tugas</a>
                     </div>
                     <div class="sidebar-brand sidebar-brand-sm">
-                        <a href="index.html">MT</a>
+                        <a href="{{ route('tasks.index') }}">MT</a>
                     </div>
                     <ul class="sidebar-menu">
                         <li class="menu-header">Page</li>
-                        <li><a class="nav-link" href="blank.html"><i class="fas fa-th-large"></i> <span>Home
-                                    Page</span></a></li>
+                        <li><a class="nav-link" href="{{ route('tasks.index') }}"><i class="fas fa-th-large"></i>
+                                <span>Halaman Tugas</span></a></li>
                     </ul>
                     <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
                         <a href="https://github.com/wildannouval"
@@ -123,6 +125,24 @@
     <!-- Template JS File -->
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <!-- Page Specific JS File -->
+    <script src="assets/js/page/features-post-create.js"></script>
+
+    <script src="assets/modules/summernote/summernote-bs4.js"></script>
+
+    <script>
+        //message with toastr
+        @if (session()->has('success'))
+
+            toastr.success('{{ session('success') }}', 'BERHASIL!');
+        @elseif (session()->has('error'))
+
+            toastr.error('{{ session('error') }}', 'GAGAL!');
+        @endif
+    </script>
 </body>
 
 </html>

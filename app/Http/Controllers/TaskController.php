@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
-        //
+        $tasks = Task::latest()->paginate(5);
+
+        return view('taskpage.index', compact('tasks'));
     }
 
     /**
@@ -19,7 +23,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        return view('taskpage.create');
     }
 
     /**
