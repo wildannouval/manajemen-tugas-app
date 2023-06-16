@@ -3,13 +3,13 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Tugas</h1>
+            <h1>{{ $title }}</h1>
             <div class="section-header-button">
                 <a href="{{ route('tasks.create') }}" class="btn btn-primary">Tambah Tugas +</a>
             </div>
         </div>
         <div class="section-body">
-            <h2 class="section-title">Tugas</h2>
+            <h2 class="section-title">{{ $title }}</h2>
             <p class="section-lead">
                 Aplikasi manajemen tugas sederhana menggunakan Laravel
             </p>
@@ -24,10 +24,11 @@
                                 </li>
                                 <li class="nav-item mr-2">
                                     <a class="nav-link bg-success text-white"
-                                        href="{{ route('tasks.tugascompleted') }}">Completed</a>
+                                        href="{{ route('tasks.completed') }}">Completed</a>
                                 </li>
                                 <li class="nav-item mr-2">
-                                    <a class="nav-link bg-warning text-white" href="#">Incompleted</a>
+                                    <a class="nav-link bg-warning text-white"
+                                        href="{{ route('tasks.incompleted') }}">Incompleted</a>
                                 </li>
                             </ul>
                         </div>
@@ -38,7 +39,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Semua Tugas</h4>
+                            <h4>Semua {{ $title }}</h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -77,6 +78,8 @@
                                                             class="btn btn-sm btn-dark">SHOW</a>
                                                         <a href="{{ route('tasks.edit', $task->id) }}"
                                                             class="btn btn-sm btn-primary">EDIT</a>
+                                                        <a href="{{ route('tasks.updatestatus', $task->id) }}"
+                                                            class="btn btn-sm btn-warning">EDIT STATUS</a>
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-sm btn-danger">DELETE</button>

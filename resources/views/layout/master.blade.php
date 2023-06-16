@@ -47,8 +47,9 @@
                 <ul class="navbar-nav navbar-right">
                     <li class="dropdown"><a href="#" data-toggle="dropdown"
                             class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                            <img alt="image" src="assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
-                            <div class="d-sm-none d-lg-inline-block">Hi, User</div>
+                            <img alt="image" src="{{ asset('assets/img/avatar/avatar-1.png') }}"
+                                class="rounded-circle mr-1">
+                            <div class="d-sm-none d-lg-inline-block">Hi, Wildan</div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <div class="dropdown-title">Logged in 5 min ago</div>
@@ -97,8 +98,10 @@
             </div>
             <footer class="main-footer">
                 <div class="footer-left">
-                    Copyright &copy; 2018 <div class="bullet"></div> Design By <a href="https://nauval.in/">Muhamad
-                        Nauval Azhar</a>
+                    Copyright &copy; 2018 <div class="bullet"></div>Manajemen Tugas by <a
+                        href="https://wildannouval.github.io/">Wildan Nouval Rizki</a>
+                    <div class="bullet"></div> Design Template By <a href="https://nauval.in/">Muhamad
+                        Nauval Azhar </a>
                 </div>
                 <div class="footer-right">
 

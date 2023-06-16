@@ -15,9 +15,24 @@ class TaskController extends Controller
      */
     public function index(): View
     {
+        $title = 'Tugas';
         $tasks = Task::latest()->paginate(5);
 
-        return view('taskpage.index', compact('tasks'));
+        return view('taskpage.index', compact('tasks', 'title'));
+    }
+    public function incompleted(): View
+    {
+        $title = 'Tugas Incompleted';
+        $tasks = Task::where('status_id', 1)->paginate(5);
+
+        return view('taskpage.index', compact('tasks', 'title'));
+    }
+    public function completed(): View
+    {
+        $title = 'Tugas Completed';
+        $tasks = Task::where('status_id', 2)->paginate(5);
+
+        return view('taskpage.index', compact('tasks', 'title'));
     }
 
 
@@ -68,6 +83,12 @@ class TaskController extends Controller
         $statuses = Status::all();
         return view('taskpage.edit', compact('task', 'statuses'));
     }
+    public function editstatus(string $id): View
+    {
+        $task = Task::findOrFail($id);
+        $statuses = Status::all();
+        return view('taskpage.editstatus', compact('task', 'statuses'));
+    }
 
     /**
      * Update the specified resource in storage.
@@ -89,6 +110,19 @@ class TaskController extends Controller
         ]);
         return redirect()->route('tasks.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
+    public function updatestatus(Request $request, string $id): RedirectResponse
+    {
+        $this->validate($request, [
+            'status_id' => 'required',
+        ]);
+
+        $task = Task::findOrfail($id);
+
+        $task->update([
+            'status_id' => $request->status_id,
+        ]);
+        return redirect()->route('tasks.index')->with(['success' => 'Data Berhasil Diubah!']);
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -98,11 +132,5 @@ class TaskController extends Controller
         $task = Task::findOrfail($id);
         $task->delete();
         return redirect()->route('tasks.index')->with(['success' => 'Data Berhasil Dihapus!']);
-    }
-
-    public function tugascompleted(): View
-    {
-
-        return view('taskpage.completed', compact('tasks_completed'));
     }
 }

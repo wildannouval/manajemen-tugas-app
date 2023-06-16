@@ -15,11 +15,13 @@ use App\Http\Controllers\TaskController;
 */
 
 Route::get('/', function () {
-    return view('taskpage.completed');
+    return redirect()->route('tasks.index');
 });
 
 //index data tasks
 Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
+Route::get('/tasks/completed', [TaskController::class, 'completed'])->name('tasks.completed');
+Route::get('/tasks/incompleted', [TaskController::class, 'incompleted'])->name('tasks.incompleted');
 
 //create data tasks
 Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
@@ -32,20 +34,11 @@ Route::get('/tasks/{id}', [TaskController::class, 'show'])->name('tasks.show');
 
 //edit data by id task
 Route::get('/tasks/{id}/edit', [TaskController::class, 'edit'])->name('tasks.edit');
+Route::get('/tasks/{id}/status', [TaskController::class, 'editstatus'])->name('tasks.editstatus');
 
 //update data by id
 Route::put('/tasks/{id}', [Taskcontroller::class, 'update'])->name('tasks.update');
+Route::put('/tasks/{id}/status', [Taskcontroller::class, 'updatestatus'])->name('tasks.updatestatus');
 
 //delete data by id
 Route::delete('/tasks/{id}', [Taskcontroller::class, 'destroy'])->name('tasks.destroy');
-
-//mengambil tugas telah selesai
-Route::get('/tasks/selesai', [TaskController::class, 'tugascompleted'])->name('tasks.tugascompleted');
-
-//mengambil tugas belum selesai
-// Route::get('/tasks/incompleted', [TaskController::class, 'tugasincompleted'])->name('tasks.tugas_incompleted');
-
-//update status tugas berdasarkan id
-// Route::put('/tasks/{id}/status', [TaskController::class, 'updatestatus'])->name('tasks.update_status');
-
-// Route::resource('tasks', TaskController::class);
