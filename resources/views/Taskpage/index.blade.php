@@ -60,29 +60,34 @@
                                                 <td class="text-center">{{ $task->judul }}</td>
                                                 <td>{!! $task->deskripsi !!}</td>
                                                 <td class="text-center">
-                                                    @if ($task->status->status_name == 'Belum Selesai')
-                                                        <div class="badge badge-danger">{{ $task->status->status_name }}
-                                                        </div>
-                                                    @elseif ($task->status->status_name == 'Selesai')
-                                                        <div class="badge badge-success">{{ $task->status->status_name }}
-                                                        </div>
-                                                    @else
-                                                        <div class="badge badge-info">{{ $task->status->status_name }}
-                                                        </div>
-                                                    @endif
+                                                    <form action="{{ route('tasks.updatestatus', $task->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        @if ($task->status->status_name == 'Belum Selesai')
+                                                            <input type="submit" class="btn btn-success btn-lg"
+                                                                value="{{ $task->status->status_name }}">
+                                                        @else
+                                                            <input type="submit" class="btn btn-danger btn-lg"
+                                                                value="{{ $task->status->status_name }}">
+                                                        @endif
+
+                                                    </form>
                                                 </td>
                                                 <td class="text-center">
                                                     <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                                                         action="{{ route('tasks.destroy', $task->id) }}" method="POST">
                                                         <a href="{{ route('tasks.show', $task->id) }}"
-                                                            class="btn btn-sm btn-dark">SHOW</a>
+                                                            class="btn btn-lg btn-dark btn-icon icon-left"><i
+                                                                class="fas fa-info-circle"></i>SHOW</a>
                                                         <a href="{{ route('tasks.edit', $task->id) }}"
-                                                            class="btn btn-sm btn-primary">EDIT</a>
-                                                        <a href="{{ route('tasks.updatestatus', $task->id) }}"
-                                                            class="btn btn-sm btn-warning">EDIT STATUS</a>
+                                                            class="btn btn-lg btn-primary btn-icon icon-left"><i
+                                                                class="far fa-edit"></i>EDIT</a>
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-sm btn-danger">DELETE</button>
+                                                        <button type="submit"
+                                                            class="btn btn-lg btn-danger btn-icon icon-left"><i
+                                                                class="fas fa-times"></i>DELETE</button>
                                                     </form>
                                                 </td>
                                             </tr>

@@ -34,7 +34,6 @@ Route::get('/tasks/{id}', [TaskController::class, 'show'])->name('tasks.show');
 
 //edit data by id task
 Route::get('/tasks/{id}/edit', [TaskController::class, 'edit'])->name('tasks.edit');
-Route::get('/tasks/{id}/status', [TaskController::class, 'editstatus'])->name('tasks.editstatus');
 
 //update data by id
 Route::put('/tasks/{id}', [Taskcontroller::class, 'update'])->name('tasks.update');

@@ -20,6 +20,7 @@ class TaskController extends Controller
 
         return view('taskpage.index', compact('tasks', 'title'));
     }
+
     public function incompleted(): View
     {
         $title = 'Tugas Incompleted';
@@ -27,6 +28,7 @@ class TaskController extends Controller
 
         return view('taskpage.index', compact('tasks', 'title'));
     }
+
     public function completed(): View
     {
         $title = 'Tugas Completed';
@@ -34,7 +36,6 @@ class TaskController extends Controller
 
         return view('taskpage.index', compact('tasks', 'title'));
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -83,12 +84,6 @@ class TaskController extends Controller
         $statuses = Status::all();
         return view('taskpage.edit', compact('task', 'statuses'));
     }
-    public function editstatus(string $id): View
-    {
-        $task = Task::findOrFail($id);
-        $statuses = Status::all();
-        return view('taskpage.editstatus', compact('task', 'statuses'));
-    }
 
     /**
      * Update the specified resource in storage.
@@ -110,19 +105,16 @@ class TaskController extends Controller
         ]);
         return redirect()->route('tasks.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
-    public function updatestatus(Request $request, string $id): RedirectResponse
+
+    public function updatestatus(string $id): RedirectResponse
     {
-        $this->validate($request, [
-            'status_id' => 'required',
-        ]);
-
-        $task = Task::findOrfail($id);
-
+        $task = Task::findOrFail($id);
         $task->update([
-            'status_id' => $request->status_id,
+            'status_id' => $task->status_id == '1' ? '2' : '1',
         ]);
-        return redirect()->route('tasks.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('tasks.index')->with(['success' => 'Status Berhasil Diubah!']);
     }
+
 
     /**
      * Remove the specified resource from storage.
