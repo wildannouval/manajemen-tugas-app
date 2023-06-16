@@ -12,6 +12,11 @@ class Task extends Model
     protected $fillable = [
         'judul',
         'deskripsi',
-        'status',
+        'status_id',
     ];
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class, 'status_id', 'id');
+    }
 }

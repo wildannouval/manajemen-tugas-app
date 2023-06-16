@@ -6,13 +6,13 @@
             <div class="section-header-back">
                 <a href="{{ route('tasks.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Tambah Tugas Baru</h1>
+            <h1>Edit Tugas</h1>
         </div>
 
         <div class="section-body">
-            <h2 class="section-title">Tambah Tugas Baru</h2>
+            <h2 class="section-title">Edit Tugas : {{ $task->judul }}</h2>
             <p class="section-lead">
-                Form Data Tugas Baru
+                Form Edit Tugas
             </p>
 
             <div class="row">
@@ -22,13 +22,14 @@
                             <h4>Form</h4>
                         </div>
                         <div class="card-body">
-                            <form action={{ route('tasks.store') }} method="POST">
+                            <form action={{ route('tasks.update', $task->id) }} method="POST">
                                 @csrf
+                                @method('PUT')
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Judul</label>
                                     <div class="col-sm-12 col-md-7">
                                         <input type="text" class="form-control @error('judul') is-invalid @enderror"
-                                            name="judul">
+                                            name="judul" value="{{ old('judul', $task->judul) }}">
                                         @error('judul')
                                             <div class="alert alert-danger mt-2">
                                                 {{ $message }}
@@ -39,7 +40,7 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Deskripsi</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <textarea class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi"></textarea>
+                                        <textarea class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi">{{ old('deskripsi', $task->deskripsi) }}</textarea>
                                         @error('deskripsi')
                                             <div class="alert alert-danger mt-2">
                                                 {{ $message }}
@@ -54,7 +55,7 @@
                                             @foreach ($statuses as $status)
                                                 <label class="selectgroup-item">
                                                     <input type="radio" name="status_id" value="{{ $status->id }}"
-                                                        class="selectgroup-input">
+                                                        class="selectgroup-input" @checked($task->status_id == $status->id)>
                                                     <span class="selectgroup-button">{{ $status->status_name }}</span>
                                                 </label>
                                             @endforeach
@@ -64,7 +65,7 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                     <div class="col-sm-12 col-md-7">
-                                        <button class="btn btn-primary" type="submit">Submit</button>
+                                        <button class="btn btn-primary" type="submit">Edit Tugas</button>
                                     </div>
                                 </div>
                             </form>

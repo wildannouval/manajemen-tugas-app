@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Tugas</h1>
+            <h1>Tugas Completed</h1>
             <div class="section-header-button">
                 <a href="{{ route('tasks.create') }}" class="btn btn-primary">Tambah Tugas +</a>
             </div>
@@ -23,8 +23,7 @@
                                     <a class="nav-link bg-info text-white" href="{{ route('tasks.index') }}">All</a>
                                 </li>
                                 <li class="nav-item mr-2">
-                                    <a class="nav-link bg-success text-white"
-                                        href="{{ route('tasks.tugascompleted') }}">Completed</a>
+                                    <a class="nav-link bg-success text-white" href="tasks.tugas_completed">Completed</a>
                                 </li>
                                 <li class="nav-item mr-2">
                                     <a class="nav-link bg-warning text-white" href="#">Incompleted</a>
@@ -38,10 +37,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Semua Tugas</h4>
+                            <h4>Semua Tugas Completed</h4>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
+                            {{-- <div class="table-responsive">
                                 <table class="table table-bordered">
                                     <thead class="text-center">
                                         <tr>
@@ -91,7 +90,7 @@
                                     </tbody>
                                 </table>
                                 {{ $tasks->links() }}
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

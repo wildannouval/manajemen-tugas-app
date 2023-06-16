@@ -143,6 +143,11 @@
             toastr.error('{{ session('error') }}', 'GAGAL!');
         @endif
     </script>
+
+    <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('deskripsi');
+    </script>
 </body>
 
 </html>

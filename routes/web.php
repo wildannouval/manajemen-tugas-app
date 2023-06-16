@@ -15,30 +15,37 @@ use App\Http\Controllers\TaskController;
 */
 
 Route::get('/', function () {
-    return view('layout.master');
+    return view('taskpage.completed');
 });
 
-// //create data tasks
-// Route::post('/tasks', [TaskController::class, 'create'])->name('create');
+//index data tasks
+Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
 
-// //index data tasks
-// Route::get('/tasks', [TaskController::class, 'index'])->name('index');
+//create data tasks
+Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
 
-// //Show data by id
-// Route::get('/tasks/{id}', [TaskController::class, 'show'])->name('show');
+//store data tasks
+Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
 
-// //update data by id
-// Route::put('/tasks/{id}', [Taskcontroller::class, 'update']);
+//show data by id task
+Route::get('/tasks/{id}', [TaskController::class, 'show'])->name('tasks.show');
 
-// //delete data by id
-// Route::delete('/tasks/{id}', [Taskcontroller::class, 'delete'])->name('delete');
+//edit data by id task
+Route::get('/tasks/{id}/edit', [TaskController::class, 'edit'])->name('tasks.edit');
+
+//update data by id
+Route::put('/tasks/{id}', [Taskcontroller::class, 'update'])->name('tasks.update');
+
+//delete data by id
+Route::delete('/tasks/{id}', [Taskcontroller::class, 'destroy'])->name('tasks.destroy');
 
 //mengambil tugas telah selesai
-Route::get('/tasks/completed', [TaskController::class, 'tugas_completed'])->name('tugas_completed');
+Route::get('/tasks/selesai', [TaskController::class, 'tugascompleted'])->name('tasks.tugascompleted');
 
 //mengambil tugas belum selesai
-Route::get('/tasks/incompleted', [TaskController::class, 'tugas_incompleted'])->name('tugas_incompleted');
+// Route::get('/tasks/incompleted', [TaskController::class, 'tugasincompleted'])->name('tasks.tugas_incompleted');
 
-Route::put('/tasks/{id}/status', [TaskController::class, 'update_status']);
+//update status tugas berdasarkan id
+// Route::put('/tasks/{id}/status', [TaskController::class, 'updatestatus'])->name('tasks.update_status');
 
-Route::resource('tasks', TaskController::class);
+// Route::resource('tasks', TaskController::class);
