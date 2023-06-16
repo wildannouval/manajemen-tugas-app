@@ -55,11 +55,11 @@
                                     </thead>
                                     <tbody>
                                         @forelse ($tasks as $task)
-                                            <tr class="text-center">
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $task->judul }}</td>
+                                            <tr>
+                                                <td class="text-center">{{ $loop->iteration }}</td>
+                                                <td class="text-center">{{ $task->judul }}</td>
                                                 <td>{!! $task->deskripsi !!}</td>
-                                                <td>
+                                                <td class="text-center">
                                                     @if ($task->status->status_name == 'Belum Selesai')
                                                         <div class="badge badge-danger">{{ $task->status->status_name }}
                                                         </div>

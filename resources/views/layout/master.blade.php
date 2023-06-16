@@ -147,9 +147,14 @@
         @endif
     </script>
 
-    <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/classic/ckeditor.js"></script>
+
     <script>
-        CKEDITOR.replace('deskripsi');
+        ClassicEditor
+            .create(document.querySelector('#deskripsi'))
+            .catch(error => {
+                console.error(error);
+            });
     </script>
 </body>
 

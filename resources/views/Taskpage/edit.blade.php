@@ -40,7 +40,7 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Deskripsi</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <textarea class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi">{{ old('deskripsi', $task->deskripsi) }}</textarea>
+                                        <textarea class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi" id="deskripsi">{{ old('deskripsi', $task->deskripsi) }}</textarea>
                                         @error('deskripsi')
                                             <div class="alert alert-danger mt-2">
                                                 {{ $message }}
